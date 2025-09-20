@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Plus, Trash2, Loader2, Eye } from "lucide-react";
 import Link from "next/link";
 
@@ -107,7 +106,7 @@ export default function MtrcsPage() {
         const error = await response.json();
         alert(`Error: ${error.error}`);
       }
-    } catch (error) {
+    } catch {
       alert('Error creating mtrx');
     } finally {
       setCreating(false);
@@ -134,7 +133,7 @@ export default function MtrcsPage() {
         const error = await response.json();
         alert(`Error: ${error.error}`);
       }
-    } catch (error) {
+    } catch {
       alert('Error deleting mtrx');
     } finally {
       setDeleting(null);

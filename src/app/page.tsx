@@ -125,7 +125,7 @@ export default function Home() {
                   </div>
                   <Button asChild variant="outline" className="w-full group-hover:scale-105 transition-transform">
                     <Link href={`/mtrx/${encodeURIComponent(recentMtrx.date)}`}>
-                      Play "{recentMtrx.theme}"
+                      Play &quot;{recentMtrx.theme}&quot;
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>

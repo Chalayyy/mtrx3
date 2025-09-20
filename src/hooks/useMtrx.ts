@@ -27,7 +27,7 @@ export function useMtrx(date: string): UseMtrxReturn {
         } else {
           setError('Failed to load mtrx');
         }
-      } catch (err) {
+      } catch {
         setError('Failed to load mtrx');
       } finally {
         setLoading(false);
