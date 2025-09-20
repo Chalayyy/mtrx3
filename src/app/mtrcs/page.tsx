@@ -294,7 +294,7 @@ export default function MtrcsPage() {
       ) : (
         <div className="grid gap-4 mb-8">
           {allMtrcs.map((mtrx) => {
-            const rows = mtrx.rows as any[];
+            const rows = mtrx.rows;
             return (
             <Card key={mtrx.date} className="hover:shadow-md transition-shadow">
               <CardHeader className="pb-3">
@@ -341,7 +341,7 @@ export default function MtrcsPage() {
                       Clues & Solutions ({rows.length} rows)
                     </h4>
                     <div className="grid gap-3">
-                      {rows.map((row: any, index: number) => (
+                      {rows.map((row, index) => (
                         <div key={index} className="p-3 bg-gray-50 rounded-lg border">
                           <div className="space-y-2">
                             <div className="flex items-start gap-2">
