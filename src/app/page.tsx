@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Grid3X3, Puzzle, ArrowRight, Sparkles } from "lucide-react";
+import { Calendar, Grid3X3, Puzzle, ArrowRight, Sparkles, Code, Palette } from "lucide-react";
 import Link from "next/link";
 import { PageContainer } from "@/components/mtrx";
 
@@ -58,18 +58,19 @@ export default function Home() {
               <h1 className="text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent">
                 MTRX
               </h1>
+              <p className="absolute -top-2 -right-9 h-6 w-6">BETA</p>
               <Sparkles className="absolute -top-2 -right-2 h-6 w-6 text-yellow-500" />
             </div>
           </div>
 
           <p className="text-xl text-muted-foreground max-w-lg mx-auto leading-relaxed">
-            Welcome to MTRX - where puzzles meet creativity! Challenge your mind with our collection of themed word puzzles.
+            Daily themed word puzzles
           </p>
 
           <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
             <Badge variant="secondary" className="flex items-center gap-1">
               <Grid3X3 className="h-3 w-3" />
-              {loading ? "..." : totalMtrcs} Puzzles Available
+              {loading ? "..." : totalMtrcs} {totalMtrcs === 1 ? "Puzzle" : "Puzzles"} Available
             </Badge>
           </div>
         </div>
@@ -146,11 +147,33 @@ export default function Home() {
         <div className="bg-muted/50 rounded-xl p-6 max-w-md">
           <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-2">
             <Sparkles className="h-4 w-4" />
-            <span className="font-medium">How MTRX Works</span>
+            <span className="font-medium">How a MTRX Works</span>
           </div>
           <p className="text-sm text-center">
-            Each puzzle presents you with clues to solve. Match wits with themed challenges and track your progress with visual feedback!
+            Each puzzle presents a theme and clues. The answer to all the clues combined will fit the theme, though inidividual answers might not.
           </p>
+        </div>
+
+        {/* Developer Links */}
+        <div>
+          <span>
+              Dev Links (Nothing interesting here)
+            </span>
+          <div className="flex flex-wrap gap-3 justify-center">
+
+            <Button variant="outline" size="sm" asChild className="text-blue-600 border-blue-200 hover:bg-blue-50">
+              <Link href="/api-usage">
+                <Code className="h-4 w-4 mr-2" />
+                API Usage
+              </Link>
+            </Button>
+            <Button variant="outline" size="sm" asChild className="text-purple-600 border-purple-200 hover:bg-purple-50">
+              <Link href="/components-demo">
+                <Palette className="h-4 w-4 mr-2" />
+                Components Demo
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
     </PageContainer>

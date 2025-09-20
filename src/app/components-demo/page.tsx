@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { HomeButton } from "@/components/mtrx";
 import Link from "next/link";
 
 export default function ComponentsDemo() {
@@ -12,17 +13,15 @@ export default function ComponentsDemo() {
         <div>
           <h1 className="text-3xl font-bold mb-2">Shadcn/ui Components Demo</h1>
           <p className="text-muted-foreground">
-            A showcase of beautiful, accessible components built with Tailwind CSS.
+            Showcase of Shadcn/ui components (for dev purposes)
           </p>
         </div>
-        <div className="flex gap-2">
-          <Button variant="outline" size="sm" asChild>
-            <Link href="/mtrcs">View Mtrcs</Link>
-          </Button>
-          <Button variant="outline" size="sm" asChild>
-            <Link href="/">Home</Link>
-          </Button>
-        </div>
+          <div className="flex gap-2">
+            <Button variant="outline" size="sm" asChild>
+              <Link href="/mtrcs">View Mtrcs</Link>
+            </Button>
+            <HomeButton />
+          </div>
       </div>
 
       <div className="grid gap-6">
@@ -162,38 +161,6 @@ export default function ComponentsDemo() {
               <Badge variant="secondary">Secondary</Badge>
               <Badge variant="destructive">Destructive</Badge>
               <Badge variant="outline">Outline</Badge>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Features Card */}
-        <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
-          <CardHeader>
-            <CardTitle className="text-blue-900">Why Shadcn/ui?</CardTitle>
-            <CardDescription className="text-blue-700">
-              Perfect for small projects that need great design.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-              <div>
-                <h4 className="font-semibold text-blue-900 mb-2">✨ Features</h4>
-                <ul className="space-y-1 text-blue-700">
-                  <li>• Copy-paste components</li>
-                  <li>• Built on Tailwind CSS</li>
-                  <li>• Fully accessible</li>
-                  <li>• Customizable & modern</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-blue-900 mb-2">🚀 Benefits</h4>
-                <ul className="space-y-1 text-blue-700">
-                  <li>• No large dependencies</li>
-                  <li>• Works with Next.js 15</li>
-                  <li>• Easy to customize</li>
-                  <li>• Great documentation</li>
-                </ul>
-              </div>
             </div>
           </CardContent>
         </Card>

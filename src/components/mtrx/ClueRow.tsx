@@ -11,17 +11,20 @@ interface ClueRowProps {
 
 export function ClueRow({ clue, answer, onAnswerChange, hasChecked, isCorrect }: ClueRowProps) {
   return (
-    <div className="flex items-center gap-40">
-      <Input
-        type="text"
-        placeholder="Enter your answer..."
-        value={answer}
-        onChange={(e) => onAnswerChange(e.target.value)}
-        className={`w-64 ${getInputStateClasses(hasChecked, isCorrect)}`}
-      />
+    <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-8">
       <p className="text-lg font-medium flex-1">
         {clue}
       </p>
+      <div className="sm:w-64 sm:flex-shrink-0">
+        <Input
+          type="text"
+          placeholder="Enter your answer..."
+          value={answer}
+          onChange={(e) => onAnswerChange(e.target.value)}
+          className={`w-full ${getInputStateClasses(hasChecked, isCorrect)}`}
+        />
+      </div>
+
     </div>
   );
 }

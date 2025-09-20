@@ -14,7 +14,7 @@ export function BackButton({
   size = "default"
 }: BackButtonProps) {
   return (
-    <Button variant="outline" size={size} asChild>
+    <Button size={size} asChild>
       <Link href={href}>
         <ArrowLeft className="mr-2 h-4 w-4" />
         {children}

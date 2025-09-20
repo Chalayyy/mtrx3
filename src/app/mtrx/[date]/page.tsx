@@ -42,7 +42,7 @@ export default function MtrxDetailPage() {
   }
 
   return (
-    <div className="container mx-auto p-8 max-w-4xl">
+    <div className="container mx-auto p-4 sm:p-8 max-w-4xl">
       <ConfettiWrapper
         show={showConfetti}
         width={windowDimensions.width}
@@ -67,13 +67,13 @@ export default function MtrxDetailPage() {
         </CardContent>
       </Card>
 
-      <div className="flex justify-center mb-8">
+      <div className="flex justify-center mb-8 px-4">
         <Button
           onClick={() => checkAnswers(mtrx.rows)}
-          className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg font-semibold"
+          className="bg-green-600 hover:bg-green-700 text-white px-6 sm:px-8 py-3 text-base sm:text-lg font-semibold w-full sm:w-auto"
           size="lg"
         >
-          <CheckCircle className="mr-2 h-5 w-5" />
+          <CheckCircle className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
           Check Answers
         </Button>
       </div>

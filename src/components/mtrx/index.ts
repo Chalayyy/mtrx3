@@ -10,6 +10,7 @@ export { ConfettiWrapper } from './ConfettiWrapper';
 // Shared components
 export { PageContainer } from './shared/PageContainer';
 export { BackButton } from './shared/BackButton';
+export { HomeButton } from './shared/HomeButton';
 
 // Shared types
 export type { AttemptRecord, MtrxRow, Mtrx } from './shared/types';
