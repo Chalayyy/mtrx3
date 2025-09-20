@@ -6,10 +6,10 @@ import { eq } from 'drizzle-orm';
 // GET /api/mtrcs/[date] - Get a single mtrx by date
 export async function GET(
   request: NextRequest,
-  { params }: { params: { date: string } }
+  { params }: { params: Promise<{ date: string }> }
 ) {
   try {
-    const { date } = params;
+    const { date } = await params;
 
     if (!date) {
       return NextResponse.json(
@@ -40,10 +40,10 @@ export async function GET(
 // PUT /api/mtrcs/[date] - Update a mtrx by date
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { date: string } }
+  { params }: { params: Promise<{ date: string }> }
 ) {
   try {
-    const { date } = params;
+    const { date } = await params;
     const body = await request.json();
     const { theme, rows } = body;
 
@@ -95,10 +95,10 @@ export async function PUT(
 // DELETE /api/mtrcs/[date] - Delete a mtrx by date
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { date: string } }
+  { params }: { params: Promise<{ date: string }> }
 ) {
   try {
-    const { date } = params;
+    const { date } = await params;
 
     if (!date) {
       return NextResponse.json(
