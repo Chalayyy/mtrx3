@@ -8,20 +8,19 @@ import Link from "next/link";
 
 export default function ComponentsDemo() {
   return (
-    <div className="container mx-auto p-8 max-w-4xl">
-      <div className="flex justify-between items-center mb-8">
-        <div>
+    <div className="container mx-auto p-8 max-w-4xl relative">
+      <HomeButton />
+
+      <div className="flex flex-col items-center mb-8">
+        <div className="text-center mb-4">
           <h1 className="text-3xl font-bold mb-2">Shadcn/ui Components Demo</h1>
           <p className="text-muted-foreground">
             Showcase of Shadcn/ui components (for dev purposes)
           </p>
         </div>
-          <div className="flex gap-2">
-            <Button variant="outline" size="sm" asChild>
-              <Link href="/mtrcs">View Mtrcs</Link>
-            </Button>
-            <HomeButton />
-          </div>
+        <Button variant="outline" size="sm" asChild>
+          <Link href="/mtrcs">View Mtrcs</Link>
+        </Button>
       </div>
 
       <div className="grid gap-6">

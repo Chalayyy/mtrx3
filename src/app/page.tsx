@@ -50,6 +50,7 @@ export default function Home() {
 
   return (
     <PageContainer>
+
       <div className="min-h-[80vh] flex flex-col items-center justify-center text-center space-y-12">
         {/* Hero Section */}
         <div className="space-y-6 max-w-2xl">
@@ -78,69 +79,52 @@ export default function Home() {
         {/* Action Cards */}
         <div className="grid gap-6 md:grid-cols-2 w-full max-w-2xl">
           {/* Browse All Mtrcs */}
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
-            <CardHeader className="pb-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
-                  <Grid3X3 className="h-5 w-5 text-blue-600" />
+          <Link href="/mtrcs">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
+              <CardHeader className="pb-2">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
+                    <Grid3X3 className="h-5 w-5 text-blue-600" />
+                  </div>
+                  <div className="flex-1">
+                    <CardTitle className="text-lg">Browse All Puzzles</CardTitle>
+                    <CardDescription>Explore our complete collection</CardDescription>
+                  </div>
+                  <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:translate-x-1 transition-transform" />
                 </div>
-                <div>
-                  <CardTitle className="text-lg">Browse All Puzzles</CardTitle>
-                  <CardDescription>Explore our complete collection</CardDescription>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <Button asChild className="w-full group-hover:scale-105 transition-transform">
-                <Link href="/mtrcs">
-                  View All Mtrcs
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </CardContent>
-          </Card>
+              </CardHeader>
+            </Card>
+          </Link>
 
           {/* Featured/Recent Mtrx */}
-          <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
-            <CardHeader className="pb-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-green-100 rounded-lg group-hover:bg-green-200 transition-colors">
-                  <Puzzle className="h-5 w-5 text-green-600" />
+          <Link href={recentMtrx ? `/mtrx/${encodeURIComponent(recentMtrx.date)}` : "/mtrcs"}>
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer group">
+              <CardHeader className="pb-2">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-green-100 rounded-lg group-hover:bg-green-200 transition-colors">
+                    <Puzzle className="h-5 w-5 text-green-600" />
+                  </div>
+                  <div className="flex-1">
+                    <CardTitle className="text-lg">
+                      {recentMtrx ? `${recentMtrx.theme}` : "Jump right into the fun"}
+                    </CardTitle>
+                    <CardDescription>
+                      {recentMtrx ? "Latest Puzzle" : "Start Playing"}
+                    </CardDescription>
+                  </div>
+                  <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:translate-x-1 transition-transform" />
                 </div>
-                <div>
-                  <CardTitle className="text-lg">
-                    {recentMtrx ? "Latest Puzzle" : "Start Playing"}
-                  </CardTitle>
-                  <CardDescription>
-                    {recentMtrx ? `${recentMtrx.theme}` : "Jump right into the fun"}
-                  </CardDescription>
-                </div>
-              </div>
-            </CardHeader>
-            <CardContent>
-              {recentMtrx ? (
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              </CardHeader>
+              {recentMtrx && (
+                <CardContent>
+                  <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
                     <Calendar className="h-4 w-4" />
                     {recentMtrx.date}
                   </div>
-                  <Button asChild variant="outline" className="w-full group-hover:scale-105 transition-transform">
-                    <Link href={`/mtrx/${encodeURIComponent(recentMtrx.date)}`}>
-                      Play &quot;{recentMtrx.theme}&quot;
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </div>
-              ) : (
-                <Button asChild variant="outline" className="w-full group-hover:scale-105 transition-transform">
-                  <Link href="/mtrcs">
-                    {loading ? "Loading..." : "Explore Puzzles"}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
+                </CardContent>
               )}
-            </CardContent>
-          </Card>
+            </Card>
+          </Link>
         </div>
 
         {/* Quick Stats or Info */}

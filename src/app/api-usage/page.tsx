@@ -10,10 +10,12 @@ import Link from "next/link";
 export default function ApiUsagePage() {
   return (
     <PageContainer>
+      <HomeButton />
+
       <div className="container mx-auto p-8 max-w-4xl">
-        <div className="flex justify-between items-center mb-8">
-          <div>
-            <h1 className="text-3xl font-bold mb-2 flex items-center gap-3">
+        <div className="flex flex-col items-center mb-8">
+          <div className="text-center mb-4">
+            <h1 className="text-3xl font-bold mb-2 flex items-center justify-center gap-3">
               <Code className="h-8 w-8 text-blue-600" />
               API Usage Guide
             </h1>
@@ -21,15 +23,12 @@ export default function ApiUsagePage() {
               How to direclty interact with the database (for dev purposes)
             </p>
           </div>
-          <div className="flex gap-2">
-            <Button variant="outline" size="sm" asChild>
-              <Link href="/components-demo">
-                <ExternalLink className="h-4 w-4 mr-2" />
-                Components
-              </Link>
-            </Button>
-            <HomeButton />
-          </div>
+          <Button variant="outline" size="sm" asChild>
+            <Link href="/components-demo">
+              <ExternalLink className="h-4 w-4 mr-2" />
+              Components
+            </Link>
+          </Button>
         </div>
 
         <div className="space-y-6">

@@ -30,7 +30,11 @@ export default function MtrcsPage() {
     try {
       const response = await fetch('/api/mtrcs');
       const data = await response.json();
-      setAllMtrcs(data);
+      // Sort by date descending (newest first)
+      const sortedData = data.sort((a: Mtrx, b: Mtrx) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      });
+      setAllMtrcs(sortedData);
     } catch (error) {
       console.error('Error fetching mtrcs:', error);
     } finally {
@@ -55,24 +59,27 @@ export default function MtrcsPage() {
   }
 
   return (
-    <div className="container mx-auto p-8 max-w-6xl">
-      <div className="flex justify-between items-center mb-8">
-        <div>
+    <div className="container mx-auto p-8 max-w-6xl relative">
+      <HomeButton />
+
+      {/* Create New Mtrx Button - Top Right */}
+      <div className="absolute top-4 right-4 sm:top-8 sm:right-8 z-10">
+        <Button
+          onClick={() => setIsCreateModalOpen(true)}
+          className="bg-green-600 hover:bg-green-700 text-white w-10 h-10 sm:w-auto sm:h-auto sm:px-6 sm:py-3"
+          size="sm"
+        >
+          <Plus className="h-5 w-5 sm:mr-2" />
+          <span className="hidden sm:inline">Create New Mtrx</span>
+        </Button>
+      </div>
+
+      <div className="flex flex-col items-center mb-8">
+        <div className="text-center">
           <h1 className="text-3xl font-bold mb-2">Mtrcs Database</h1>
           <p className="text-muted-foreground">
-            Add a new mtrx or view all previous mtrcs.
+            Add a new mtrx or view a previous mtrx.
           </p>
-        </div>
-        <div className="flex gap-3">
-          <HomeButton />
-          <Button
-            onClick={() => setIsCreateModalOpen(true)}
-            className="bg-green-600 hover:bg-green-700 text-white"
-            size="lg"
-          >
-            <Plus className="mr-2 h-5 w-5" />
-            Create New Mtrx
-          </Button>
         </div>
       </div>
 

@@ -15,7 +15,7 @@ interface UseAnswerCheckingReturn {
   stopConfetti: () => void;
 }
 
-export function useAnswerChecking(numQuestions: number): UseAnswerCheckingReturn {
+export function useAnswerChecking(numQuestions: number, hardMode: boolean = false): UseAnswerCheckingReturn {
   const [answers, setAnswers] = useState<string[]>(new Array(numQuestions).fill(''));
   const [checkResults, setCheckResults] = useState<boolean[]>([]);
   const [hasChecked, setHasChecked] = useState(false);
@@ -45,7 +45,14 @@ export function useAnswerChecking(numQuestions: number): UseAnswerCheckingReturn
     };
     setAttemptHistory(prev => [...prev, newAttempt]);
 
-    setCheckResults(results);
+    // In hard mode, don't show individual results until all are correct
+    if (hardMode) {
+      const allCorrect = results.every(result => result);
+      setCheckResults(allCorrect ? results : new Array(results.length).fill(false));
+    } else {
+      setCheckResults(results);
+    }
+
     setHasChecked(true);
 
     // Trigger confetti and show history if all answers are correct

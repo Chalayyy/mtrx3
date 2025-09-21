@@ -7,9 +7,10 @@ interface ClueRowProps {
   onAnswerChange: (value: string) => void;
   hasChecked: boolean;
   isCorrect: boolean;
+  hardMode?: boolean;
 }
 
-export function ClueRow({ clue, answer, onAnswerChange, hasChecked, isCorrect }: ClueRowProps) {
+export function ClueRow({ clue, answer, onAnswerChange, hasChecked, isCorrect, hardMode = false }: ClueRowProps) {
   return (
     <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-8">
       <p className="text-lg font-medium flex-1">
@@ -21,7 +22,7 @@ export function ClueRow({ clue, answer, onAnswerChange, hasChecked, isCorrect }:
           placeholder="Enter your answer..."
           value={answer}
           onChange={(e) => onAnswerChange(e.target.value)}
-          className={`w-full ${getInputStateClasses(hasChecked, isCorrect)}`}
+          className={`w-full ${hardMode ? '' : getInputStateClasses(hasChecked, isCorrect)}`}
         />
       </div>
 
