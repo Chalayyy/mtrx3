@@ -12,6 +12,8 @@ import { HomeButton } from "@/components/mtrx";
 interface MtrxRow {
   clue: string;
   solution: string;
+  prefix?: string;
+  suffix?: string;
 }
 
 interface Mtrx {
@@ -42,6 +44,9 @@ export default function ManagePage() {
   };
 
   useEffect(() => {
+    // Set page title
+    document.title = "Manage - MTRX";
+
     fetchMtrcs();
   }, []);
 
@@ -129,7 +134,7 @@ export default function ManagePage() {
     if (!editForm) return;
     setEditForm({
       ...editForm,
-      rows: [...editForm.rows, { clue: '', solution: '' }]
+      rows: [...editForm.rows, { clue: '', solution: '', prefix: '', suffix: '' }]
     });
   };
 
@@ -141,10 +146,10 @@ export default function ManagePage() {
     });
   };
 
-  const updateRow = (index: number, field: 'clue' | 'solution', value: string) => {
+  const updateRow = (index: number, field: keyof MtrxRow, value: string) => {
     if (!editForm) return;
     const newRows = [...editForm.rows];
-    newRows[index][field] = value;
+    newRows[index] = { ...newRows[index], [field]: value };
     setEditForm({ ...editForm, rows: newRows });
   };
 
@@ -294,33 +299,56 @@ export default function ManagePage() {
                       </Button>
                     </div>
                     {editForm?.rows.map((row, index) => (
-                      <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-3 p-3 bg-gray-50 rounded-lg border">
-                        <div>
-                          <label className="text-xs font-medium text-muted-foreground mb-1 block">Clue</label>
-                          <Textarea
-                            value={row.clue}
-                            onChange={(e) => updateRow(index, 'clue', e.target.value)}
-                            placeholder="Enter clue..."
-                            className="min-h-[60px]"
-                          />
+                      <div key={index} className="p-3 bg-gray-50 rounded-lg border space-y-3">
+                        <div className="flex justify-between items-start">
+                          <div className="flex-1">
+                            <label className="text-xs font-medium text-muted-foreground mb-1 block">Clue {index + 1}</label>
+                            <Textarea
+                              value={row.clue}
+                              onChange={(e) => updateRow(index, 'clue', e.target.value)}
+                              placeholder="Enter clue..."
+                              className="min-h-[60px]"
+                            />
+                          </div>
+                          <Button
+                            variant="destructive"
+                            size="sm"
+                            onClick={() => removeRow(index)}
+                            disabled={editForm.rows.length <= 1}
+                            className="ml-2"
+                          >
+                            <X className="h-4 w-4" />
+                          </Button>
                         </div>
-                        <div>
-                          <label className="text-xs font-medium text-muted-foreground mb-1 block">Solution</label>
-                          <div className="flex gap-2">
+                        <div className="flex gap-2 items-end">
+                          <div className="w-20">
+                            <label className="text-xs font-medium text-muted-foreground mb-1 block">Prefix</label>
+                            <Input
+                              value={row.prefix || ''}
+                              onChange={(e) => updateRow(index, 'prefix', e.target.value.toUpperCase())}
+                              placeholder="A..."
+                              maxLength={5}
+                              className="font-mono text-center"
+                            />
+                          </div>
+                          <div className="flex-1">
+                            <label className="text-xs font-medium text-muted-foreground mb-1 block">Solution</label>
                             <Input
                               value={row.solution}
                               onChange={(e) => updateRow(index, 'solution', e.target.value)}
                               placeholder="SOLUTION"
                               className="font-mono uppercase"
                             />
-                            <Button
-                              variant="destructive"
-                              size="sm"
-                              onClick={() => removeRow(index)}
-                              disabled={editForm.rows.length <= 1}
-                            >
-                              <X className="h-4 w-4" />
-                            </Button>
+                          </div>
+                          <div className="w-20">
+                            <label className="text-xs font-medium text-muted-foreground mb-1 block">Suffix</label>
+                            <Input
+                              value={row.suffix || ''}
+                              onChange={(e) => updateRow(index, 'suffix', e.target.value.toUpperCase())}
+                              placeholder="...S"
+                              maxLength={5}
+                              className="font-mono text-center"
+                            />
                           </div>
                         </div>
                       </div>
@@ -339,8 +367,10 @@ export default function ManagePage() {
                           </div>
                           <div className="flex items-baseline gap-2">
                             <span className="text-xs font-medium text-muted-foreground w-16">Solution:</span>
-                            <p className="text-sm font-mono text-green-700 font-medium">
-                              {row.solution}
+                            <p className="text-sm font-mono text-green-700 font-medium flex items-center">
+                              {row.prefix && <span className="text-muted-foreground">{row.prefix}</span>}
+                              <span className="px-1 py-0.5 bg-green-50 rounded border border-green-200">{row.solution}</span>
+                              {row.suffix && <span className="text-muted-foreground">{row.suffix}</span>}
                             </p>
                           </div>
                         </div>

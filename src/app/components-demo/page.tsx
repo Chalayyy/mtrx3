@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -7,6 +8,11 @@ import { HomeButton } from "@/components/mtrx";
 import Link from "next/link";
 
 export default function ComponentsDemo() {
+  useEffect(() => {
+    // Set page title
+    document.title = "Components Demo - MTRX";
+  }, []);
+
   return (
     <div className="container mx-auto p-8 max-w-4xl relative">
       <HomeButton />

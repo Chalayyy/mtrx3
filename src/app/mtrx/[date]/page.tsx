@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -24,6 +24,16 @@ export default function MtrxDetailPage() {
 
   const { mtrx, loading, error } = useMtrx(date);
   const windowDimensions = useWindowDimensions();
+
+  // Set page title when mtrx data is loaded
+  useEffect(() => {
+    if (mtrx) {
+      const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+      const isToday = mtrx.date === today;
+      const title = isToday ? "Today's puzzle - MTRX" : `${mtrx.theme} - MTRX`;
+      document.title = title;
+    }
+  }, [mtrx]);
 
   const {
     answers,
@@ -97,6 +107,8 @@ export default function MtrxDetailPage() {
                 hasChecked={hasChecked}
                 isCorrect={checkResults[index]}
                 hardMode={hardMode}
+                prefix={row.prefix}
+                suffix={row.suffix}
               />
             </div>
           ))}

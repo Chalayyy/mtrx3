@@ -12,6 +12,8 @@ import { HomeButton } from "@/components/mtrx";
 interface MtrxRow {
   clue: string;
   solution: string;
+  prefix?: string;
+  suffix?: string;
 }
 
 interface Mtrx {
@@ -43,6 +45,9 @@ export default function MtrcsPage() {
   };
 
   useEffect(() => {
+    // Set page title
+    document.title = "Browse Puzzles - MTRX";
+
     fetchMtrcs();
   }, []);
 

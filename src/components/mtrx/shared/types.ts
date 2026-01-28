@@ -8,6 +8,8 @@ export interface AttemptRecord {
 export interface MtrxRow {
   clue: string;
   solution: string;
+  prefix?: string;
+  suffix?: string;
 }
 
 export interface Mtrx {

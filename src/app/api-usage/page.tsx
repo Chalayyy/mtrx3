@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,6 +9,11 @@ import { Code, ArrowLeft, ExternalLink } from "lucide-react";
 import Link from "next/link";
 
 export default function ApiUsagePage() {
+  useEffect(() => {
+    // Set page title
+    document.title = "API Usage - MTRX";
+  }, []);
+
   return (
     <PageContainer>
       <HomeButton />

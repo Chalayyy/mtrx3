@@ -23,6 +23,9 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Set page title
+    document.title = "Home - MTRX";
+
     const fetchData = async () => {
       try {
         // Fetch all mtrcs to get the most recent one and total count
